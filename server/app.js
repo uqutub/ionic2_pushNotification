@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 app.get('/gcm/api', function (req, res) {
   
   var message = {
-    registration_id: 'c1qEzi-I8SA:APA91bE_FdvQvJzJ8ioG8Ss7fP-M5K4-R_tLa9fzaD_mjGPf7GXpo9naS6os364eTCCcSrcRoEfnBQdV7sRsLI3CU93ZOQa_fxHnr7LiR_82lVpc8X9gh7rfR-_NxSNNhz1Vldw0ZJ1v', // required
+    registration_id: 'fnAaeIWIUoI:APA91bHb6qFUcg7m3JfVPRTDHib8mr5d1gJf3KnAepNLyNVoqIAv98SnKP8kBjFz5onR-Tv7FMdhJe5Rv2qN1C_mfEla7uIQTf22iEMWjr6KWHuFwO-lf7wgm_c6xvXGl5XzSgPlhxph', // required
     collapse_key: 'Collapse key', 
     'data.key1': 'value1',
     'data.key2': 'value2'

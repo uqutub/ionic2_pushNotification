@@ -3,18 +3,20 @@ import {StatusBar} from 'ionic-native';
 import {GettingStartedPage} from './pages/getting-started/getting-started';
 import {ListPage} from './pages/list/list';
 import {Push} from 'ionic-native';
+import {Service} from './pages/services/service';
 
 
 
 @App({
     templateUrl: 'build/app.html',
+    providers: [Service],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
     rootPage: any = GettingStartedPage;
     pages: Array<{ title: string, component: any }>
 
-    constructor(private app: IonicApp, private platform: Platform) {
+    constructor(private app: IonicApp, private platform: Platform, private service: Service) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
@@ -57,9 +59,11 @@ class MyApp {
             });
             // alert('bbbbbbbbbbbbbbbbbb');
 
-            push.on('registration', function(data) {
+            push.on('registration', (data) => {
                 console.log('dataaaaaaaaaaaaaaa');
                 console.log(data.registrationId);
+                this.pages.push(   { title: data.registrationId, component: ListPage } );
+                this.service.deviceObj.id = data.registrationId;
             });
 
             // push.on('registration', function(data) {
@@ -67,15 +71,15 @@ class MyApp {
             //     console.log("SUPER GCM_ID = " + data.registrationId);
             // });
 
-            // push.on('notification', function(data) {
-            //     // Foreground
-            //     if (data.additionalData.foreground) {
-            //         console.log('foreground');
-            //         //buildPush(data);
-            //     }
-            // });
+            push.on('notification', function(data) {
+                // Foreground
+                if (data.additionalData.foreground) {
+                    console.log('foreground');
+                    //buildPush(data);
+                }
+            });
 
-            push.on('error', function(e) {
+            push.on('error', (e) => {
                 console.log('PUSH PLUGIN ERROR: ' + e.message);
             });
 

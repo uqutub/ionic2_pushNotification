@@ -1,15 +1,18 @@
 import {Page} from 'ionic-angular';
 import {Push} from 'ionic-native';
+import {Service} from '../services/service';
 
 
 
 @Page({
-    templateUrl: 'build/pages/getting-started/getting-started.html'
+    templateUrl: 'build/pages/getting-started/getting-started.html',
+    providers: [Service]
 })
 export class GettingStartedPage {
-    constructor() {
-
-
+    obj = {id: ''};
+    constructor(private service: Service) {
+        this.obj = this.service.deviceObj
+            
 
         // push.on('notification', function(data) {
         //     console.log(data.message);
